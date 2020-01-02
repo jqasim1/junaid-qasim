@@ -1,0 +1,138 @@
+//
+//  main.cpp
+//  Menu
+//
+//  Created by Junaid Qasim on 8/27/19.
+//  Copyright © 2019 Junaid Qasim. All rights reserved.
+//
+/*
+ This challenge is about using a collection (list) of integers and allowing the user to select options from a menu to perform operations on the list
+ 
+ The program should display menu options to the user as follows:
+    P - Print numbers
+    A - Add a number
+    M - Display mean of numbers
+    S - Display smallest number
+    L - Display largest number
+    Q - Quit
+ 
+    Enter your choice:
+ 
+ Both upper and lowercase allowed
+ 
+ If P or p is inputted: Display list of elements; exxample "[1,2,3,4,5]"
+ if list is empty: Display "[] - the list is empty"
+ 
+ If A or a is inputtted: Prompt user to add an integer, the display it was added; emxample "5 added"
+ 
+ If M or m: Calculate and display mean or display "Unable to calculate mean - no data"
+ 
+ If S or s: Display smallest element in list "The smallest number is 1" or "Unable to determine smallest number - list is empty
+ 
+ If L or l: Same as S but largest
+ 
+ Ir Q or q: Display "Goodbye!"
+ */
+ 
+ 
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    char selection;
+    vector<int> nums {};
+    cout << "[] - the list is empty\n" << endl;
+    
+    do {
+        cout << "P - Print numbers" << endl;
+        cout << "A - Add a number" << endl;
+        cout << "M - Display mean of numbers" << endl;
+        cout << "S - Display smallest number" << endl;
+        cout << "L - Display largest number" << endl;
+        cout << "Q - Quit" << endl;
+        cout << "\nEnter your choice: " << endl;
+        cin >> selection;
+        
+        switch (selection) {
+            case 'p':{
+            case 'P':
+                if (nums.size() == 0) {
+                    cout << "[] = the list is empty" << endl << "\n";
+                } else {
+                    cout << "[ ";
+                    for(int i = 0; i < nums.size(); i++) {
+                        cout << nums.at(i) << " ";
+                    }
+                    cout << "]" << endl << "\n";
+                }
+                break;
+            }
+            case 'a': {
+            case 'A':
+                int element {};
+                cout << "Type the number you wish to add: " << endl;
+                cin >> element;
+                nums.push_back(element);
+                cout << element << " added" << endl << "\n";
+                break;
+            }
+            case 'm':{
+            case 'M':
+                double avg {0};
+                if(nums.size() != 0){
+                    for(int i = 0; i < nums.size(); i++) {
+                        avg += nums.at(i);
+                    }
+                     avg /= nums.size();
+                    cout << "The mean is " << avg << endl << "\n";
+                } else {
+                    cout << "Cannot display mean - list is empty" << endl << "\n";
+                }
+                break;
+            }
+            case 's': {
+            case 'S':
+                if(nums.size() != 0) {
+                int smallest = nums.at(0);
+                for(int i = 1; i < nums.size(); i++) {
+                    if(nums.at(i) < smallest) {
+                        smallest = nums.at(i);
+                    }
+                }
+                cout << "The smallest value is " << smallest << endl << "\n";
+                } else {
+                    cout << "Cannot determine smallest value - list is empty" << endl << "\n";
+                }
+                break;
+            }
+            case 'l': {
+            case 'L':
+                if(nums.size() != 0) {
+                    int biggest = nums.at(0);
+                    for(int i = 1; i < nums.size(); i++) {
+                        if(nums.at(i) > biggest) {
+                            biggest = nums.at(i);
+                        }
+                    }
+                    cout << "The largest value is " << biggest << endl << "\n";
+                } else {
+                    cout << "Cannot determine largest value - list is empty" << endl << "\n";
+                }
+                break;
+            }
+            case 'q': {
+            case 'Q':
+                cout << "Goodbye" << endl;
+                break;
+            }
+            default:
+                cout << "Illegal output" << endl << "\n";
+                break;
+        }
+        
+    } while(selection != 'q' && selection != 'Q');
+
+    cout << "\n";
+    return 0;
+}
