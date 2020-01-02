@@ -1,0 +1,44 @@
+//
+//  main.cpp
+//  Cypher
+//
+//  Created by Junaid Qasim on 8/29/19.
+//  Copyright © 2019 Junaid Qasim. All rights reserved.
+//
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    string alphabet {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "};
+    string key {"zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA."};
+    
+    string message;
+    cout << "Enter your secret message: " << endl;
+    getline(cin, message);
+    
+    string encrypted;
+    string decrypted;
+    
+    //Encrypting message
+    cout << "\nEncrypting message..." << endl;
+    
+    for(char c: message) {
+      size_t position = alphabet.find(c);
+        if(position != string::npos) {
+            encrypted += key.at(position);
+        }
+        else {
+            encrypted += c;
+        }
+    }
+    cout << "Encrypted message: " << encrypted << endl;
+    
+    //Decrypting message
+    cout << "\nDecrypting message... " << endl;
+    
+    cout << "Decrypted message: " << message << endl;
+    
+    cout << "\n";
+    return 0;
+}
